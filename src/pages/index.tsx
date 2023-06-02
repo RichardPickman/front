@@ -10,7 +10,7 @@ import { Item } from '@/components/Item';
 import { useProducts } from '@/hooks/useProducts';
 
 
-export default function Home({ API_URL }: { API_URL: string }) {
+export default function Home({ API_URL = 'http://api-nginx/' }: { API_URL: string }) {
   const [products, isError, getProducts, deleteProducts] = useProducts(API_URL);
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
@@ -56,9 +56,3 @@ export default function Home({ API_URL }: { API_URL: string }) {
     </main>
   )
 }
-
-export const getStaticProps = async () => ({
-  props: {
-    API_URL: process.env.REACT_APP_API_URL,
-  }
-})
