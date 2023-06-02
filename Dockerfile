@@ -2,6 +2,10 @@ FROM node:16
 
 WORKDIR /usr/share/ui
 
+ARG API_URL
+
+ENV REACT_APP_API_URL $API_URL
+
 COPY . .
 
 RUN npm install --production
