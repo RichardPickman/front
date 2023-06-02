@@ -6,7 +6,7 @@ export const useProducts = (API_URL: string) => {
     const [products, setProducts] = useState<(CD | Furniture | Book)[] | null>(null);
 
     const getProducts = async () => {
-        const response = await fetch(`${API_URL}/index.php`, { method: 'GET' });
+        const response = await fetch(API_URL, { method: 'GET' });
         const body = await response.json();
 
         if (response.status === 400) {
@@ -32,7 +32,7 @@ export const useProducts = (API_URL: string) => {
     }
 
     const deleteProducts = async (ids: string[]) => {
-        const response = await fetch(`${API_URL}/index.php`, {
+        const response = await fetch(API_URL, {
             method: 'DELETE',
             body: JSON.stringify(ids),
         });

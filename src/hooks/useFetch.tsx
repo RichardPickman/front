@@ -6,7 +6,7 @@ export const useProductFetch = (url: string) => {
     const [message, setMessage] = useState('');
 
     const fetchForm = async (method: string, payload: unknown) => {
-        const response = await fetch(`${url}/index.php`, {
+        const response = await fetch(url, {
             method: method,
             body: JSON.stringify(payload),
         });
