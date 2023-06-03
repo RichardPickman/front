@@ -52,7 +52,7 @@ export const FormFields = ({ attributes, onChange }: Props) => {
         <>
             {Object.entries(baseValues).map(([key, value]) => (
                 <div className="grid grid-cols-2 items-center" key={key}>
-                    {key.charAt(0).toUpperCase() + key.slice(1)}
+                    <p className="capitalize">{key}</p>
                     {value.inputs.map((item) => (
                         <InputWithLabel
                             key={key}
