@@ -26,6 +26,7 @@ export const DropDownMenu = ({ elements, onChange }: Props) => {
                         id={item}
                         key={item}
                         value={item}
+                        className="capitalize"
                     >
                         {item}
                     </option>
