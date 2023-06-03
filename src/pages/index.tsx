@@ -10,7 +10,7 @@ import { Item } from '@/components/Item';
 import { useProducts } from '@/hooks/useProducts';
 
 
-export default function Home({ API_URL = 'http://api-nginx/' }: { API_URL: string }) {
+export default function Home({ API_URL }: { API_URL: string }) {
   const [products, isError, getProducts, deleteProducts] = useProducts(API_URL);
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
@@ -36,9 +36,9 @@ export default function Home({ API_URL = 'http://api-nginx/' }: { API_URL: strin
           <h1>Product List</h1>
           <div className="flex gap-2">
             <Link href={'add-product'}>
-              <Button value="Add" onClick={() => { }} />
+              <Button value="ADD" onClick={() => { }} />
             </Link>
-            <Button value="Mass delete" onClick={onDelete} />
+            <Button value="MASS DELETE" onClick={onDelete} />
           </div>
         </Header>
         <div className="grid grid-cols-4 gap-4">
@@ -56,3 +56,10 @@ export default function Home({ API_URL = 'http://api-nginx/' }: { API_URL: strin
     </main>
   )
 }
+
+
+export const getStaticProps = () => ({
+  props: {
+    API_URL: process.env.REACT_APP_API_URL,
+  }
+})

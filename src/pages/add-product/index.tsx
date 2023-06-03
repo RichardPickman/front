@@ -11,7 +11,7 @@ import Head from "next/head";
 
 export type InputField = string | number;
 
-const AddProduct = ({ attributes, API_URL = 'http://api-nginx/' }: { attributes: ProductEntity, API_URL: string }) => {
+const AddProduct = ({ attributes, API_URL }: { attributes: ProductEntity, API_URL: string }) => {
     const [status, message, fetchForm, clearFetchStates] = useProductFetch(API_URL);
     const [fields, setFields] = useState<Record<string, string | number>>({});
     const [type, setType] = useState('');
@@ -79,6 +79,7 @@ const AddProduct = ({ attributes, API_URL = 'http://api-nginx/' }: { attributes:
 export const getStaticProps = async () => ({
     props: {
         attributes: productFields,
+        API_URL: process.env.REACT_APP_API_URL,
     }
 })
 
