@@ -8,7 +8,7 @@ ENV REACT_APP_API_URL $API_URL
 
 COPY . .
 
-RUN npm install --production
+RUN npm install --omit=dev
 RUN npm run build
 
 CMD ["npm", "run"]
