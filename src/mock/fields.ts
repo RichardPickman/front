@@ -1,8 +1,8 @@
 import { ProductEntity } from "@/types";
 
 export const productFields: ProductEntity = {
-    dvd: {
-        id: 'dvd',
+    DVD: {
+        id: 'DVD',
         inputs: [
             {
                 id: 'size',
@@ -12,8 +12,8 @@ export const productFields: ProductEntity = {
         ],
         description: 'Please, provide size',
     },
-    book: {
-        id: 'book',
+    Book: {
+        id: 'Book',
         inputs: [
             {
                 id: 'weight',
@@ -23,8 +23,8 @@ export const productFields: ProductEntity = {
         ],
         description: 'Please, provide weight',
     },
-    furniture: {
-        id: 'furniture',
+    Furniture: {
+        id: 'Furniture',
         inputs: [
             {
                 id: 'width',
