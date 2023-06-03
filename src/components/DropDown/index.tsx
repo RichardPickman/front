@@ -18,10 +18,12 @@ export const DropDownMenu = ({ elements, onChange }: Props) => {
                 p-2
                 bg-white
             "
+                id="productType"
                 onClick={(event) => onChange(event.currentTarget.value)}
             >
                 {elements.map((item) => (
                     <option
+                        id={item}
                         key={item}
                         value={item}
                     >
