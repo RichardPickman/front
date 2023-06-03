@@ -60,7 +60,7 @@ const AddProduct = ({ attributes, API_URL }: { attributes: ProductEntity, API_UR
                 <div className="flex items-center justify-between pb-2 border-b">
                     <h1>Product List</h1>
                     <div className="flex gap-2">
-                        <Button type="submit" value="Add" onClick={() => { }} />
+                        <Button type="submit" value="Save" onClick={() => { }} />
                         <Link href={'/'}>
                             <Button type="button" value="Cancel" onClick={() => { }} />
                         </Link>
