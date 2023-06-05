@@ -7,8 +7,8 @@ interface Props {
 
 export const Button = ({ value, type, onClick }: Props) => {
     return (
-        <button type={type} className="border rounded px-4 py-2" onClick={onClick}>
+        <a type={type} className="border rounded px-4 py-2" onClick={onClick}>
             {value}
-        </button>
+        </a>
     )
 }
