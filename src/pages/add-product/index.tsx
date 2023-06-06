@@ -1,13 +1,15 @@
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import Head from "next/head";
+import getConfig from "next/config";
+import { useRouter } from "next/router";
+
 import { Button } from "@/components/Button"
 import { Col, Layout } from "@/components/Layout";
 import { productFields } from "../../mock/fields";
 import { useProductFetch } from "@/hooks/useFetch";
-import { ProductEntity } from "@/types";
 import { FormFields } from "../../components/Form";
-import { useRouter } from "next/router";
-import Head from "next/head";
+import { ProductEntity } from "@/types";
 
 export type InputField = string | number;
 
@@ -61,9 +63,8 @@ const AddProduct = ({ attributes, API_URL }: { attributes: ProductEntity, API_UR
                     <h1>Product List</h1>
                     <div className="flex gap-2">
                         <Button type="submit" value="Save" onClick={() => { }} />
-                        <Link href={'/'}>
-                            <Button type="button" value="Cancel" onClick={() => { }} />
-                        </Link>
+                        <Button type="button" value="Cancel" onClick={() => router.push('/')} />
+
                     </div>
                 </div>
                 <Col className="gap-2">
