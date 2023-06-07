@@ -7,7 +7,6 @@ export type ProductInput = {
 }
 
 export type ProductAttributes = {
-    id: string,
     inputs: ProductInput[],
     description?: string,
 }
