@@ -31,10 +31,13 @@ export const useProducts = (API_URL: string) => {
         setProducts(payload);
     }
 
-    const deleteProducts = async (ids: string[]) => {
+    const deleteProducts = async () => {
+        const allDeleteInputs = document.querySelectorAll('.delete-checkbox') as NodeListOf<HTMLInputElement>;
+        const checkedArr = Array.from(allDeleteInputs).filter(input => input.checked).map(item => item.id);
+
         const response = await fetch(API_URL, {
             method: 'DELETE',
-            body: JSON.stringify(ids),
+            body: JSON.stringify(checkedArr),
         });
 
         if (response.status === 400) {
