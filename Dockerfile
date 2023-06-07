@@ -1,14 +1,19 @@
-FROM node:16
+FROM node:alpine
 
-WORKDIR /usr/share/ui
+RUN mkdir -p /app
+
+WORKDIR /app
 
 ARG API_URL
 
 ENV REACT_APP_API_URL $API_URL
 
-COPY . .
+COPY package*.json /app
 
-RUN npm install --omit=dev
-RUN npm run build
+RUN npm install
 
-CMD ["npm", "run"]
+COPY . /app
+
+EXPOSE 3000
+
+CMD ["npm", "run", "dev"]
