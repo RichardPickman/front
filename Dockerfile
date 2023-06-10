@@ -1,19 +1,41 @@
-FROM node:alpine
+FROM node:18-alpine AS deps
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
+COPY package.json ./
+RUN npm install --frozen-lockfile
 
-RUN mkdir -p /app
+# Rebuild the source code only when needed
+FROM node:18-alpine AS builder
 
 WORKDIR /app
 
-ARG API_URL
+COPY --from=deps /app/node_modules ./node_modules
 
-ENV REACT_APP_API_URL $API_URL
+COPY . .
 
-COPY package*.json /app
+RUN npm run build
 
-RUN npm install
+# Production image, copy all the files and run next
+FROM node:18-alpine AS runner
+WORKDIR /app
 
-COPY . /app
+ENV NODE_ENV production
+
+RUN addgroup --system --gid 1001 pickman
+RUN adduser --system --uid 1001 richard
+
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/package.json ./package.json
+
+# Automatically leverage output traces to reduce image size
+# https://nextjs.org/docs/advanced-features/output-file-tracing
+COPY --from=builder --chown=richard:pickman /app/.next/standalone ./
+COPY --from=builder --chown=richard:pickman /app/.next/static ./.next/static
+
+USER richard
 
 EXPOSE 3000
 
-CMD ["npm", "run", "dev"]
+ENV PORT 3000
+
+CMD ["node", "server.js"]
